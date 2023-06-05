@@ -13,7 +13,7 @@
             <th>Veiksmai</th>
         </tr>
         <?php
-        // Čia įterpiamas kodas, kuris nuskaito sąskaitas iš duomenų bazės ir jas atvaizduoja
+       
         ?>
     </table>
     <br>
