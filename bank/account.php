@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title> Nauja sąskaita</title>
 </head>
- ;
+
 <body style="background:#B57EDC">
     <h1>Nauja sąskaita</h1>
     <form method="POST" action="create_account_handler.php">

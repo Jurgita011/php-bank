@@ -12,9 +12,7 @@
             <th>Sąskaitos numeris</th>
             <th>Veiksmai</th>
         </tr>
-        <?php
-       
-        ?>
+      
     </table>
     <br>
     <a href="account.php">Sukurti naują sąskaitą</a>
