@@ -1,45 +1,64 @@
 <?php
 session_start();
 
+$ieskomoji = $_GET['saskaita'] ?? 0;
 
-$saskaitosNumeris = $_POST['saskaitos_numeris'];
-$suma = $_POST['suma'];
+if ($_POST) {
+    $suma = $_POST['pridedamaSuma'];
+    $duomenys = file_get_contents('duomenys.json');
+    $saskaitos = json_decode($duomenys, true);
+    foreach($saskaitos as &$s){
+        if($s['saskaita']==$ieskomoji){
+            $s['likutis']=$s['likutis']+ $suma;
+        }
+    }
+    $naujiDuomenys = json_encode($saskaitos);
+    file_put_contents('duomenys.json', $naujiDuomenys);
+    header("Location:http://localhost/php-bank/bank/saskaitu_sarasas.php");
+    exit;
 
-// Ikelti JSON duomenis is failo
-$duomenys = file_get_contents('duomenys.json');
-$saskaitos = json_decode($duomenys, true);
-
-// Patikrinti, ar saskaita egzistuoja
-if (array_key_exists($saskaitosNumeris, $saskaitos)) {
-    // Prideti suma prie saskaitos likučio
-    $saskaitos[$saskaitosNumeris]['likutis'] += $suma;
-    
-    // Issaugoti atnaujintus duomenis i JSON faila
-    file_put_contents('duomenys.json', json_encode($saskaitos));
-    
-    // Peradresuoti i saskaitu saraso puslapi su pranesimu apie sekminga pridejima
-    header('Location:http://localhost/php-bank/bank/saskaitu_sarasas.php?pranesimas=Pridėta lėšų sėkmingai');
-    exit();
-} else {
-    // Peradresuoti i saskaitu saraso puslapi su pranesimu  apie klaidą
-    header('Location: http://localhost/php-bank/bank/saskaitu_sarasas.php?klaida=Sąskaita nerasta');
-    exit();
 }
+echo $ieskomoji
+
+
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prideti </title>
+</head>
+
+<body>
+    <form method="post" action="prideti_lesas.php?saskaita=<?php echo $ieskomoji; ?>">
+
+
+
+        <label for="pridedamaSuma"> kokia suma norite prideti ?</label>
+        <input type="number" name="pridedamaSuma" id="pridedamaSuma" required>
+
+        <button type="submit">prideti</button>
+    </form>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Prideti lesas</title>
@@ -59,4 +78,4 @@ if (array_key_exists($saskaitosNumeris, $saskaitos)) {
     
     <a href="saskaitu_sarasas.php">Grizti i saskaitu sarasa</a>
 </body>
-</html>
+</html> -->

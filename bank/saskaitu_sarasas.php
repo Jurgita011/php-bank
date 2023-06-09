@@ -4,7 +4,7 @@
 // Nuskaityti sąskaitų duomenis iš JSON failo
 $duomenys = file_get_contents('duomenys.json');
 $saskaitos = json_decode($duomenys, true);
-
+//print_r($saskaitos);
 // Patikrinti, ar buvo paspaustas trynimo mygtukas
 // if (iisset($_POST['trynimo-mygtukas'])) {
 //     $saskaitosNumeris = $_POST['saskaitos-numeris'];
@@ -50,15 +50,15 @@ $saskaitos = json_decode($duomenys, true);
         <tbody>
             <?php foreach($saskaitos as $saskaita) : ?>
             <tr>
-                <td><?= $saskaita['saskaitosNumeris'] ?></td>
+                <td><?= $saskaita['saskaita'] ?></td>
                 <td><?= $saskaita['vardas'] ?></td>
                 <td><?= $saskaita['pavarde'] ?></td>
                 <td><?= $saskaita['likutis'] ?></td>
             
                 <td>
-                    <a href="?istrinti=<?php echo $saskaita['saskaitosNumeris']; ?>">Istrinti</a> |
-                    <a href="prideti_lesas.php?saskaita=<?php echo $saskaita['saskaitosNumeris']; ?>">Prideti lesu</a> |
-                    <a href="nuskaiciuoti_lesas.php?saskaita=<?php echo $saskaita['saskaitosNumeris']; ?>">Nuskaiciuoti lesas</a>
+                    <a href="?istrinti=<?php echo $saskaita['saskaita']; ?>">Istrinti</a> |
+                    <a href="prideti_lesas.php?saskaita=<?php echo $saskaita['saskaita']; ?>">Prideti lesu</a> |
+                    <a href="nuskaiciuoti_lesas.php?saskaita=<?php echo $saskaita['saskaita']; ?>">Nuskaiciuoti lesas</a>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -4,12 +4,13 @@ if ($_POST) {
     // Duomenų įrašymas
     $vardas = $_POST['vardas'];
     $pavarde = $_POST['pavarde'];
-    $saskaitosNumeris = $_POST['saskaitos_numeris'];
-    $asmensKodas = $_POST['asmens_kodas'];
-    $likutis = $_POST['likutis'];
+    $saskaita = $_POST['saskaitosNumeris'];
+    $asmensKodas = $_POST['asmensKodas'];
+
+
     // Atsidaryti failą
     $duomenys = file_get_contents('duomenys.json');
-    $saskaitos = json_decode($duomenys, true);
+    $saskaitos = json_decode($duomenys);
     // Iššifruoti duomenis json_decode()
     // Papildyti masyvą su duomenimis
     // Užšifruoti duomenis json_encode()
@@ -18,15 +19,17 @@ if ($_POST) {
     $naujaSaskaita = array(
         'vardas' => $vardas,
         'pavarde' => $pavarde,
-        'saskaitos_numeris' => $saskaitosNumeris,
-        'asmens_kodas' => $asmensKodas
+        'saskaita' => $saskaita,
+        'asmensKodas' => $asmensKodas,
+        'likutis' => 0
+
     );
     $saskaitos[] = $naujaSaskaita;
 
 
     $naujiDuomenys = json_encode($saskaitos);
     file_put_contents('duomenys.json', $naujiDuomenys);
-
+    header("Location:http://localhost/php-bank/bank/saskaitu_sarasas.php");
     exit;
 }
 
@@ -34,12 +37,12 @@ function generuotiSaskaitosNumeri()
 {
     // Nurodykite šalies kodą ir kontrolinį skaitmenį
     $salyjeKodas = 'LT';
-    $kontrolinisSkaitmuo = '12'; // Pvz., galite naudoti fiksuotą kontrolinį skaitmenį
+    $kontrolinisSkaitmuo = '10'; // Pvz., galite naudoti fiksuotą kontrolinį skaitmenį
 
-    // Sugeneruokite atsitiktinį skaitmenų seka sąskaitos numerio dalims
-    $bankoKodas = generuotiAtsitiktiniSeka(4);
-    $filialoKodas = generuotiAtsitiktiniSeka(4);
-    $asmenineSaskaita = generuotiAtsitiktiniSeka(11);
+    // Sugeneruokite atsitiktine skaitmenų seka sąskaitos numerio dalims
+    $bankoKodas = generuotiAtsitiktiniSeka(3);
+    $filialoKodas = generuotiAtsitiktiniSeka(3);
+    $asmenineSaskaita = generuotiAtsitiktiniSeka(10);
 
     // Sudėkite visus dalis 
     $saskaitosNumeris = $salyjeKodas . $kontrolinisSkaitmuo . $bankoKodas . $filialoKodas . $asmenineSaskaita;
@@ -83,15 +86,15 @@ function generuotiAtsitiktiniSeka($ilgis)
         <input type="text" name="pavarde" id="pavarde" required>
 
         <label for="saskaitos_numeris">Sąskaitos numeris:</label>
-        <input type="text" name="saskaitos_numeris" id="saskaitos_numeris" readonly value="<?php echo generuotiSaskaitosNumeri(); ?>">
+        <input type="text" name="saskaitosNumeris" id="saskaitosNumeris" readonly value="<?php echo generuotiSaskaitosNumeri(); ?>">
 
         <label for="asmens_kodas">Asmens kodas:</label>
-        <input type="text" name="asmens_kodas" id="asmens_kodas" required>
+        <input type="text" name="asmensKodas" id="asmensKodas" required>
 
         <button type="submit">Sukurti saskaita</button>
     </form>
 
-    <a href="saskaitu_sarasas.php">Gizti i saskaitu sarasa</a>
+    <a href="http://localhost/php-bank/bank/saskaitu_sarasas.php">Gizti i saskaitu sarasa</a>
 </body>
 
 </html>
