@@ -72,10 +72,64 @@ function generuotiAtsitiktiniSeka($ilgis)
 
 <head>
     <title>Sukurti nauja saskaita</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #E3DAC9;
+            margin: 0;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
 
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+         button a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+    </style>
+    
 </head>
 
-<body style="background: #00FF00;">
+<body>
     <h1>Sukurti nauja saskaita</h1>
 
     <form method="post" action="sukurti_saskaita.php">

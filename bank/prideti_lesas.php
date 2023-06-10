@@ -31,9 +31,54 @@ echo $ieskomoji
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prideti </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background:#E3DAC9;
+            padding: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #555555;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #C0C0C0;
+            color: #fff;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 10px;
+        } 
+        a:hover{
+            background-color: #C0C0C0;
+            color: #fff;
+        }
+    </style>
 </head>
 
-<body>
+<body >
     <form method="post" action="prideti_lesas.php?saskaita=<?php echo $ieskomoji; ?>">
 
 
@@ -43,7 +88,7 @@ echo $ieskomoji
 
         <button type="submit">prideti</button>
     </form>
-
+    <a href="http://localhost/php-bank/bank/saskaitu_sarasas.php">Gizti i saskaitu sarasa</a>
 </body>
 
 </html>
@@ -58,24 +103,3 @@ echo $ieskomoji
 
 
 
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Prideti lesas</title>
-</head>
-<body>
-    <h1>Prideti lesas</h1>
-    
-    <form method="post" action="ivykdyti_prideti_lesas.php">
-        <label for="saskaitos_numeris">Saskaitos numeris:</label>
-        <input type="text" name="saskaitos_numeris" id="saskaitos_numeris" required>
-        
-        <label for="suma">Suma:</label>
-        <input type="number" name="suma" id="suma" required>
-        
-        <button type="submit">Prideti lesas</button>
-    </form>
-    
-    <a href="saskaitu_sarasas.php">Grizti i saskaitu sarasa</a>
-</body>
-</html> -->

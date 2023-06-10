@@ -4,27 +4,7 @@
 // Nuskaityti sąskaitų duomenis iš JSON failo
 $duomenys = file_get_contents('duomenys.json');
 $saskaitos = json_decode($duomenys, true);
-//print_r($saskaitos);
-// Patikrinti, ar buvo paspaustas trynimo mygtukas
-// if (iisset($_POST['trynimo-mygtukas'])) {
-//     $saskaitosNumeris = $_POST['saskaitos-numeris'];
 
-// // Ištrinti sąskaitą su nurodytu sąskaitos numeriu
-// foreach ($saskaitos as $indeksas => $saskaita) {
-//     if ($saskaita['saskaitosNumeris'] == $saskaitosNumeris) {
-//         unset($saskaitos[$indeksas]);
-//         break;
-//     }
-// }
-
-// // Išsaugoti atnaujintus sąskaitų duomenis JSON faile
-// $atnaujintiDuomenys = json_encode(['saskaitos' => array_values($saskaitos)], JSON_PRETTY_PRINT);
-// file_put_contents('duomenys.json', $atnaujintiDuomenys);
-
-// // Peradresuoti į sąskaitų sąrašo puslapį
-// header('Location: saskaitu_sarasas.php');
-// exit();
-// }
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +12,59 @@ $saskaitos = json_decode($duomenys, true);
 
 <head>
     <title>Saskaitu sarasas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:#E3DAC9;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+   
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            align-items: center;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        a:hover{
+            background-color: #C0C0C0;
+            color: #fff;
+        }
+    </style>
+   
 </head>
 
-<body style="background: #66FF00">
+<body >
     <h1>Saskaitu sarasas</h1>
 
     <table>
@@ -56,9 +86,12 @@ $saskaitos = json_decode($duomenys, true);
                 <td><?= $saskaita['likutis'] ?></td>
             
                 <td>
-                    <a href="?istrinti=<?php echo $saskaita['saskaita']; ?>">Istrinti</a> |
+                    <?php if($saskaita['likutis'] ==0):?>
+                    <a href="istrinti_saskaita.php?saskaita=<?php echo $saskaita['saskaita']; ?>">Istrinti</a> 
+                    <?php endif?>
                     <a href="prideti_lesas.php?saskaita=<?php echo $saskaita['saskaita']; ?>">Prideti lesu</a> |
                     <a href="nuskaiciuoti_lesas.php?saskaita=<?php echo $saskaita['saskaita']; ?>">Nuskaiciuoti lesas</a>
+                    
                 </td>
             </tr>
             <?php endforeach; ?>
