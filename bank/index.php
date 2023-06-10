@@ -6,12 +6,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background:#E3DAC9;
-            display: inline-block;
+            background: #E3DAC9;
+            
+            text-align: center;
+            padding: 20px;
         }
 
         h1 {
-            color:#333;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         nav ul {
@@ -34,7 +38,7 @@
         }
 
         nav ul li a:hover {
-            background-color: #333;
+            background-color: #C0C0C0;
             color: #fff;
         }
     </style>
