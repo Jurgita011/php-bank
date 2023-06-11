@@ -23,12 +23,7 @@ $saskaitos = json_decode($duomenys, true);
             min-height: 100vh;
         }
 
-        h1 {
-            text-align: center;
-        }
-   
-
-        h1 {
+       h1 {
             color: #333;
             font-size: 24px;
             margin-bottom: 20px;
